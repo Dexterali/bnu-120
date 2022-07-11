@@ -61,6 +61,6 @@
 </view>
 
 <!-- 弹出按钮 -->
-<view class="releaseBtn" bindtap="gotoUpdate">
+<view bindtap="gotoUpdate" class="releaseBtn" >
     <image class="releaseIcon" src="/images/add2.png" />
 </view>

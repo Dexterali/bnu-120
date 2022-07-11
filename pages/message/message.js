@@ -4,7 +4,7 @@ Page({
         loading: false,
         infop: "您的信息",
     },
-    onLoad: function (e) {},
+    onLoad: function (e) { },
 
     //上传到数据库
     submit: function (e) {
@@ -47,54 +47,128 @@ Page({
         });
         wx.showLoading({});
 
+
         const db = wx.cloud.database()
 
-        db.collection('user').where({
-            _openid: e.detail.value.openid
-        }).update({
-                data: {
-                    createdate: this.data.date,
-                    name: u.name,
-                    gender: u.gender,
-                    grade: u.grade,
-                    phone: u.phone,
-                    // _openid: e.openid
-                }
+        db.collection('user')
+            .where({
+                _openid: e.detail.value.openid
             })
+            .get()
+            .then(res => {
+                if (res.data.length === 0) {
+                    db.collection('user')
+                        .add({
+                            data: {
+                                createdate: this.data.date,
+                                name: u.name,
+                                gender: u.gender,
+                                grade: u.grade,
+                                phone: u.phone,
+                                // _openid: e.openid
+                            }
+                        })
 
-            //连接数据库操作完成之后
-            .then((res) => {
-                console.log("调用成功！", res)
-                wx.hideLoading()
+                        //连接数据库操作完成之后
+                        .then((res) => {
+                            console.log("调用成功！", res)
+                            wx.hideLoading()
 
-                //对界面进行操作
-                this.setData({
-                    loading: false
-                });
-                wx.hideLoading();
-                //如果成功，则返回
-                if (res.errMsg == "collection.update:ok") {
-                    // wx.switchTab({
-                    //     url: "../user/user",
-                    // });
-                    wx.navigateBack({
-                        delta: 1,
-                    });
-                } else {
-                    wx.showModal({
-                        title: "提示",
-                        content: res.result.errorMessage,
-                        success: function () {
-                            wx.navigateBack({
-                                delta: 1,
+                            //对界面进行操作
+                            this.setData({
+                                loading: false
                             });
-                        },
-                    });
+                            wx.hideLoading();
+                            //如果成功，则返回
+                            if (res.errMsg == "collection.add:ok") {
+                                wx.showModal({
+                                    title: "提示",
+                                    content: "信息修改成功",
+                                    success: function () {
+                                        wx.navigateBack({
+                                            delta: 1,
+                                        });
+                                    },
+                                });
+                                // wx.navigateBack({
+                                //     delta: 1,
+                                // });
+                            } else {
+                                wx.showModal({
+                                    title: "提示",
+                                    content: "信息修改失败",
+                                    success: function () {
+                                        wx.navigateBack({
+                                            delta: 1,
+                                        });
+                                    },
+                                });
+                            }
+                        })
+                        .catch(err => {
+                            console.log("调用失败！！！！", err)
+                        })
+                } else {
+                    db.collection('user')
+                        .where({
+                            _openid: e.detail.value.openid
+                        })
+                        .update({
+                            data: {
+                                createdate: this.data.date,
+                                name: u.name,
+                                gender: u.gender,
+                                grade: u.grade,
+                                phone: u.phone,
+                                // _openid: e.openid
+                            }
+                        })
+
+                        //连接数据库操作完成之后
+                        .then((res) => {
+                            console.log("调用成功！", res)
+                            wx.hideLoading()
+
+                            //对界面进行操作
+                            this.setData({
+                                loading: false
+                            });
+                            wx.hideLoading();
+                            //如果成功，则返回
+                            if (res.errMsg == "collection.update:ok") {
+                                // wx.switchTab({
+                                //     url: "../user/user",
+                                // });
+                                // wx.navigateBack({
+                                //     delta: 1,
+                                // });
+                                wx.redirectTo({
+                                  url: '../home/home',
+                                })
+                            } else {
+                                wx.showModal({
+                                    title: "提示",
+                                    content: res.result.errorMessage,
+                                    success: function () {
+                                        // wx.navigateBack({
+                                        //     delta: 1,
+                                        // });
+                                        wx.redirectTo({
+                                            url: '../home/home',
+                                        })
+                                    },
+                                });
+                            }
+                        })
+                        .catch(err => {
+                            console.log("调用失败！！！！", err)
+                        })
                 }
             })
-            .catch(res => {
-                console.log("调用失败！！！！", res)
+            .catch(err => {
+                console.log("调用失败！！！！", err)
             })
+
     },
 
     //修改日期，调出日期列表

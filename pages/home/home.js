@@ -14,6 +14,7 @@ Page({
         // 
         info: false,
         videoInfo: false,
+        openId: '',
 
         // 下拉菜单的数据
         tabType: 'tab1',
@@ -72,9 +73,10 @@ Page({
         }).then(res => {
             console.log(res)
             if (res.errMsg === 'navigateTo:ok') {
-                this.setData({
-                    info: true
-                })
+                // this.setData({
+                //     info: true
+                // })
+                this.onShow()
             }
         })
     },
@@ -109,7 +111,7 @@ Page({
     // 上传视频
     gotoUpdate: function () {
         // 跳转至index页面
-        wx.redirectTo({
+        wx.switchTab({
             url: '../uploadVideo/uploadVideo'
         })
     },
@@ -149,27 +151,6 @@ Page({
             this.setData({
                 openId: resp.result.openid
             })
-            // //进行数据库操作
-            // console.log("openid：", this.data.openId)
-            // const db = wx.cloud.database()
-            // db.collection('user')
-            //     .where({
-            //         _openid: this.data.openId
-            //     })
-            //     .get()
-            //     .then(res => {
-            //         console.log("ahahhahh", res)
-            //         this.setData({
-            //             userList: res.data,
-            //             message: true
-            //         })
-            //         console.log(this.data.userList)
-            //     })
-            //     .catch(err => {
-            //         console.log(err + "请求失败")
-            //     })
-
-
         }).catch((e) => {
             console.log("调用失败")
         });
@@ -195,11 +176,14 @@ Page({
             .get()
             .then(res => {
                 console.log("ahahhahh", res)
-                this.setData({
-                    userList: res.data,
-                    // message: true
-                })
-                console.log(this.data.userList)
+                console.log(this.data.openId)
+                if (res.data.length != 0) {
+                    this.setData({
+                        userList: res.data,
+                        info: true
+                    })
+                    console.log(this.data.userList)
+                }
             })
             .catch(err => {
                 console.log(err + "请求失败")

@@ -8,9 +8,9 @@ Page({
         db_account: '',
         db_password: '',
     },
-  /**
-     * 生命周期函数--监听页面加载
-     */
+    /**
+       * 生命周期函数--监听页面加载
+       */
     onLoad(options) {
         this.get_admin_info()
     },
@@ -77,8 +77,8 @@ Page({
         })
     },
 
-    
-    get_admin_info: function() {
+
+    get_admin_info: function () {
         wx.cloud.callFunction({
             name: 'get_admin_info_wj',
             data: {
@@ -126,66 +126,17 @@ Page({
             })
         }
     },
-    //游客登陆
-    loginAsTourist: function () {
-        // // 跳转至index页面
-        // wx.switchTab({
-        //   url: '../index/index'
-        // })
-        wx.cloud.callFunction({
-            name: 'get_openid_wj',
-            data: {
-                type: 'get_openid_wj'
-            }
-        }).then((resp) => {
-            this.setData({
-                openId: resp.result.openid
-            })
-            // console.log(resp.result.openid)
-            // console.log(this.data.openId)
 
-            const db = wx.cloud.database()
-            db.collection('user').where({
-                _openid: this.data.openId
-            }).get().then(res => {
-                console.log("res:",res)
-                if (res.data.length != 0) {
-                    wx.switchTab({
-                        url: '../index/index'
-                    });
-                } else {
-                    db.collection('user').add({
-                            data: {
-                                createdate: this.data.date,
-                                name: "无",
-                                gender: "无",
-                                grade: "无",
-                                phone: "无",
-                                // _openid: this.data.openId
-                            }
-                        })
-                        .then((res) => { //连接数据库操作完成之后
-                            //如果成功，则返回
-                            if (res.errMsg == "collection.add:ok") {
-                                wx.switchTab({
-                                    url: '../index/index'
-                                });
-                            } else {
-                                wx.showModal({
-                                    title: "提示",
-                                    content: res.result.errorMessage,
-                                    success: function () {
-                                        wx.navigateBack({
-                                            delta: 1,
-                                        });
-                                    },
-                                });
-                            }
-                        })
-                }
-            })
-        })
-    },
+
+
+
+
+
+
+
+
+
+
     wx_login: function () {
         wx.getUserProfile({
             desc: '获取用户的信息', //获取用户的信息
