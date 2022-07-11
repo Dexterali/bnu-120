@@ -1,10 +1,12 @@
 // pages/Certificate/Certificate.js
 Page({
- 
+  
     /**
      * 页面的初始数据
      */
     data: {
+        // 下方需要写一个，调取数据库，查看是否有视频的函数，有则showCerticification=true
+        showCerticification: true,
         //证书
         posterDatas: {
             width: 300, //画布宽度

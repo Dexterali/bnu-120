@@ -2,9 +2,17 @@ Page({
     data: {
         date: "",
         loading: false,
-        infop: "您的信息",
+        //旧信息集合
+        oldUserInfo: {},
     },
-    onLoad: function (e) { },
+    onLoad: function (e) {
+        const oldUserInfo = JSON.parse(e.oldUserInfo)
+        console.log(oldUserInfo)
+        this.setData({
+            oldUserInfo
+        })
+        console.log(this.data.oldUserInfo)
+    },
 
     //上传到数据库
     submit: function (e) {

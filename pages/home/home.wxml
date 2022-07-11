@@ -1,31 +1,32 @@
 <!-- 导航栏 -->
-<view class='nav' style='height:{{navHeight}}px'>
+<view class='nav' style='height:{{navHeight}}px; z-index: 50'>
     <view class='nav-title' style='top:{{top}}px'>BNU120</view>
-
 </view>
-
 <!-- 下拉菜单 -->
-<view class='list' style="top: {{top - 3 }}px">
+<view class='Icon' style='top:{{top}}px;    z-index:1000 '>
     <image bindtap="showCondition" class="listIcon" src="/images/list.png" />
+</view>
+<view class='list' style=" top: {{top}}px; z-index: {{conditionVisible ? '100': '1'}}">
     <!-- conditionVisible,展开列表 -->
-    <cover-view class="option-list" style="height: {{conditionVisible ? '270rpx': '0'}}">
+    <cover-view class="option-list" style="height: {{conditionVisible ? '360rpx': '0'}}">
         <cover-view bindtap="onChnageCondition" data-id="{{item.id}}" class="list-item" wx:for="{{conditionList}}" wx:key="index" wx:for-index="index">
             <cover-view class="title">{{item.title}}</cover-view>
         </cover-view>
     </cover-view>
 </view>
-
 <!-- 正文 -->
 <view style="padding-top: {{navHeight}}px;" class="myview">
     <view class="mytopview">
-        <!-- 有数据 才有info=true  -->
+        <!-- 有数据 才有info=true -->
         <!-- 有list，才有以下内容 -->
         <view class="topVisible" wx:if="{{info}}" wx:for="{{userList}}" wx:key="_id">
             <view class="imgview">
                 <!-- 以下style只调整大小，别放到wxss里 -->
-                <button class="fview" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="width:160rpx;height:160rpx;padding:0;">
+                <!--  -->
+                <button class="fview" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="z-index: 10; width:160rpx;height:160rpx;padding:0;">
                     <image class="cimg" style="width:160rpx;height:160rpx;padding:0;" src="{{avatarUrl}}"></image>
                 </button>
+                <!--  -->
             </view>
             <view class="infoview">
                 <view class="box">姓名: {{item.name}}</view>
@@ -39,16 +40,17 @@
                 <span>庆祝语</span>
             </view>
             <!-- <button bind:chooseavatar="upInfo"  type="default" style="position: relative; top: 190rpx">请完善您的信息</button> -->
-            <button bindtap="upInfo"  type="default" style="position: relative; top: 190rpx">请完善您的信息</button>
+            <button bindtap="upInfo" type="default" style="position: relative; top: 190rpx">
+                请完善您的信息
+            </button>
         </view>
     </view>
-
     <view class="mybelowview">
-        <!-- 有数据 才有videoInfo=true   -->
+        <!-- 有数据 才有videoInfo=true -->
         <view wx:if="{{videoInfo}}" wx:for="{{videoList}}" wx:key="_id" wx:for-index="index" wx:for-item="item">
-            <view class="videoitem" data-id="{{item}}">
+            <view class="videoitem" data-id="{{item}}" bindlongpress="del">
                 <video class="video" src="{{item.videourl}}" object-fit="contain" play-btn-position="center"></video>
-                <view class="text" bindlongpress="del">
+                <view class="text">
                     <text class="box2">视频名称：{{item.name}}</text>
                     <view class="box2">上传时间：{{item.createtime}}</view>
                     <view class="box2">视频简介：{{item.text}}</view>
@@ -57,10 +59,8 @@
         </view>
         <view wx:if="{{!videoInfo}}">暂未上传视频！</view>
     </view>
-
 </view>
-
 <!-- 弹出按钮 -->
-<view bindtap="gotoUpdate" class="releaseBtn" >
+<view bindtap="gotoUpdate" class="releaseBtn">
     <image class="releaseIcon" src="/images/add2.png" />
 </view>

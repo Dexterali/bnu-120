@@ -31,7 +31,10 @@ Page({
             title: '联系我们',
             id: '3'
         },
-
+        {
+            title: '获取荣誉证书',
+            id: '4'
+        }
         ],
 
         choosedCondition: {
@@ -44,25 +47,6 @@ Page({
         navHeight: '',
         top: '',
         nav: '',
-
-        show: [{
-            image: "图片11111111地址",
-            name: "图片111文字描述"
-        },
-        {
-            image: "图片1地址",
-            name: "图片1文字描述"
-        },
-        {
-            image: "图片2地址",
-            name: "图片2文字描述"
-        },
-        {
-            image: "图片3地址",
-            name: "图片3文字描述"
-        },
-
-        ]
     },
 
     // ----
@@ -92,8 +76,11 @@ Page({
         // console.log("currentTarget.dataset.id::",e.currentTarget.dataset)
 
         if (e.currentTarget.dataset.id === "1") {
+            // console.log(this.data.userList)
+            const oldUserInfo = JSON.stringify(this.data.userList[0]);
+            console.log(oldUserInfo)
             wx.redirectTo({
-                url: '../message/message',
+                url: '../message/message?oldUserInfo=' + oldUserInfo,
             })
         } else if (e.currentTarget.dataset.id === "2") {
             wx.redirectTo({
@@ -105,13 +92,20 @@ Page({
                 url: '../about/about'
             })
         }
+        else if (e.currentTarget.dataset.id === "4") {
+            wx.redirectTo({
+
+                url: '../Certificate/Certificate'
+            })
+        }
+
     },
     // ----
 
     // 上传视频
     gotoUpdate: function () {
-        // 跳转至index页面
-        wx.switchTab({
+        // 跳转至uploadVideo页面
+        wx.redirectTo({
             url: '../uploadVideo/uploadVideo'
         })
     },
@@ -131,7 +125,6 @@ Page({
         })
     },
     onLoad: function () {
-
 
         this.setData({
             navHeight: appInstance.globalData.navHeight,
@@ -197,10 +190,11 @@ Page({
     getvideolist() {
         const that = this
         wx.cloud.database().collection('video').where({
-            _openid: that.data.openid
+            _openid: that.data.openId
         }).get().then(res => {
             that.setData({
-                videoList: res.data
+                videoList: res.data,
+                videoInfo: true
             })
             console.log(res)
         }).catch(res => {
@@ -224,21 +218,38 @@ Page({
     },
     delvideo(e) {
         const that = this;
-        wx.cloud.deleteFile({
-            fileList: [e.currentTarget.dataset.id.videourl],
-        }).then(res => {
-            // console.log("del file success")
-        }).catch(err => {
-            console.error("del file fail")
-        });
-        wx.cloud.database().collection('video').doc(e.currentTarget.dataset.id._id).remove({
-            success(res) {
-                that.getvideolist()
+        wx.cloud.callFunction({
+            name: 'delvideo',
+            data: {
+                e
             },
-            fail(res) {
-                console.log("del fail")
+            success(res) {
+                console.log(res);
+                that.getvideolist();
+            },
+            fail() {
+                console.log("false")
             }
-        });
+        })
+    },
+    // delvideo(e) {
+    //     const that = this;
+    //     console.log(e);
+    //     wx.cloud.deleteFile({
+    //         fileList: [e.currentTarget.dataset.id.videourl],
+    //     }).then(res => {
+    //         // console.log("del file success")
+    //     }).catch(err => {
+    //         console.error("del file fail")
+    //     });
+    //     wx.cloud.database().collection('video').doc(e.currentTarget.dataset.id._id).remove({
+    //         success(res) {
+    //             that.getvideolist()
+    //         },
+    //         fail(res) {
+    //             console.log("del fail")
+    //         }
+    //     });
 
-    }
+    // }
 })

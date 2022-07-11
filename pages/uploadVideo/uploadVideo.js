@@ -171,8 +171,8 @@ Page({
                                 icon: 'success'
                             })
                             setTimeout(() => {
-                                wx.switchTab({
-                                    url: '/pages/index/index',
+                                wx.navigateTo({
+                                    url: '../home/home',
                                 })
                             }, 1000)
                         }

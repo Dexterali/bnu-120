@@ -30,17 +30,4 @@
         <button type="default" style="width:40%;color:#cccccc;" wx:else>选择视频</button>
         <button type="primary" style="width:40%;" bindtap="saveVideo">上传保存</button>
     </view>
-    <!-- <view class="videoname">
-        <text>已上传视频 {{num}}个</text>
-        <view wx:for="{{videolist}}" wx:key="num" wx:for-index="idx" wx:for-item="item">
-        <view class="item">
-            <view class='itemname'>
-                {{idx}}: {{item.name}}
-            </view>
-            <view class='itemdate'>
-                {{item.createtime}}
-            </view>
-        </view>
-        </view>
-    </view> -->
 </view>

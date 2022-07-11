@@ -68,3 +68,24 @@ App({
 
 })
 
+
+/* 这是注释掉的app.json中的tabbar配置 */
+// "tabBar": {
+//   "list": [
+//     {
+//       "pagePath": "pages/index/index",
+//       "iconPath": "/images/tabs/home.png",
+//       "selectedIconPath": "/images/tabs/home-active.png"
+//     },
+//     {
+//       "pagePath": "pages/uploadVideo/uploadVideo",
+//       "iconPath": "/images/tabs/upload.png",
+//       "selectedIconPath": "/images/tabs/upload-active.png"
+//     },
+//     {
+//       "pagePath": "pages/user/user",
+//       "iconPath": "/images/tabs/message.png",
+//       "selectedIconPath": "/images/tabs/message-active.png"
+//     }
+//   ]
+// },

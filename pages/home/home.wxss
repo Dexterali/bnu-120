@@ -5,7 +5,6 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 10;
     flex-shrink: 0;
     background: #fff;
 }
@@ -33,20 +32,25 @@
 /* 导航栏结束 */
 
 /* 下拉菜单 */
-.list {
-    /* 能显示出来 */
-    z-index: 100;
+.Icon{
     /* 固定不动 */
     position: fixed;
-    width: 180rpx;
-    height: 360rpx;
+    width: 60rpx;
+    height: 60rpx;
+    /* 最顶层 */
+    z-index:1000
+}
+.list {
+    /* 固定不动 */
+    position: fixed;
+    width: 210rpx;
+    height: 450rpx;
 }
 
 .listIcon {
     width: 56rpx;
     height: 56rpx;
     margin-left: 25px;
-    z-index: 100;
 }
 
 /* .condition {
@@ -62,7 +66,7 @@
 
 .option-list {
     position: absolute;
-    width: 100%;
+    /* width: 100%; */
     padding: 0rpx 56rpx;
     top: 90rpx;
     border-radius: 6rpx;
@@ -85,7 +89,6 @@
 .title {
     width: auto;
     font-family: 楷体;
-
 }
 
 /* 下拉框结束 */
@@ -153,13 +156,13 @@
 
 /* 头像 */
 .fview {
+
     align-items: center;
     border-radius: 100%;
 }
 
 /* 头像 */
 .cimg {
-
     align-items: center;
     /* width: 90%; */
     /* height: 90%; */
@@ -186,7 +189,8 @@
     width: 100%;
     align-items: center;
 }
-.pleText{
+
+.pleText {
     align-items: center;
 }
 
