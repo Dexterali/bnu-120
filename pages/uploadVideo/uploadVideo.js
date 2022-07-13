@@ -70,7 +70,9 @@ Page({
                     let path = res.tempFilePath
                     path = path.replace('.mp4', '')
                     path = path.replace('http://tmp/', '')
-                    path = path.substring(0, 5)
+                    path = path.substring(1,2)
+                    let time = new Date().getTime()
+                    path = path + time%1000
                     console.log(path)
                     that.setData({
                         name: path
@@ -121,16 +123,18 @@ Page({
      * 将本地资源上传到服务器
      * 
      */
-    uploadFile: function (tempFilePath) {
+    uploadFile: function (tempFilePath,name) {
         const that = this
         let third_session = wx.getStorageSync('third_session')
         wx.showLoading({
             title: '上传进度：0%',
             mask: true //是否显示透明蒙层，防止触摸穿透
         })
+        console.log(that.data.name)
+        console.log(tempFilePath)
         const uploadTask = wx.cloud.uploadFile({
             filePath: tempFilePath, //要上传文件资源的路径（本地路径）
-            cloudPath: that.data.name, //云存储的视频名称
+            cloudPath: name, //云存储的视频名称
             success: function (res) {
                 //res
                 // errMsg: "cloud.uploadFile:ok"
@@ -191,6 +195,7 @@ Page({
                         fileID: '',
                         clickFlag: true
                     })
+                console.log('2')
                     wx.showToast({
                         title: '上传失败',
                         icon: 'none'
@@ -198,7 +203,7 @@ Page({
                 }
 
             },
-            fail: function () {
+            fail: function (res) {
                 // fail
                 wx.hideLoading()
                 that.setData({
@@ -207,6 +212,7 @@ Page({
                     duration: '',
                     clickFlag: true
                 })
+                console.log('3',res)
                 wx.showToast({
                     title: '上传失败',
                     icon: 'none'
@@ -225,8 +231,7 @@ Page({
     saveVideo() {
         //调用服务器保存视频信息接口
         if (this.data.makesure) {
-            this.uploadFile(this.data.tempFilePath)
-
+            this.uploadFile(this.data.tempFilePath,this.data.name)
         } else {
             wx.showToast({
                 title: '请上传视频',
