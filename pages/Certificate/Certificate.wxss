@@ -26,7 +26,7 @@ page {
 .canvas2d {
     width: 300rpx;
     height: 80rpx;
-    font-size: 28rpx;
+    font-size: 32rpx;
     color: rgb(255, 0, 0);
     display: flex;
     align-items: center;
@@ -38,12 +38,20 @@ page {
 .text {
     width: 600rpx;
     height: 280rpx;
-    font-size: 28rpx;
+    font-size: 32rpx;
     color: #000;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
+    
+}
+.gif{
+    width: 600rpx;
+    height: 280rpx;
+    display: flex;
+    justify-content: center; 
+    /* margin: auto; */
 }
 
 .canvasMain .button {

@@ -24,7 +24,9 @@
                 <!-- 以下style只调整大小，别放到wxss里 -->
                 <!--  -->
                 <button class="fview" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="z-index: 10; width:160rpx;height:160rpx;padding:0;">
-                    <image class="cimg" style="width:160rpx;height:160rpx;padding:0;" src="{{avatarUrl}}"></image>
+                    <!-- <image class="cimg" style="width:160rpx;height:160rpx;padding:0;" src="{{avatarUrl}}"></image> -->
+                    <!-- <image class="cimg" style="width:160rpx;height:160rpx;padding:0;" src="{{avatarUrl}}"></image> -->
+                    <open-data type="userAvatarUrl"></open-data>
                 </button>
                 <!--  -->
             </view>

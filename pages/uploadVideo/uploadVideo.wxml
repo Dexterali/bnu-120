@@ -10,24 +10,40 @@
     <view class="playerInfo">
         <view class="textvideo" wx:if="{{notmakesure}}">
             <view class="videoContent">
-            <!-- 希望上传什么样的视频 -->
+                <!-- 希望上传什么样的视频 -->
                 <view class="tips">
-                <view class="title">上传视频</view>
-                <view class="alltext">你希望上传什么呢</view>
+                    <!-- <view class="title">上传视频</view>
+                <view class="alltext">你希望上传什么呢</view> -->
                 </view>
-                <!-- <image class="playImg" src="/images/video-list/upload.png" mode="aspectFill" /> -->
             </view>
         </view>
         <view class="video" wx:else>
             <view class="videoContent">
-                <video class="videoContent" show-center-play-btn="true" src="{{tempFilePath}}" bindfullscreenchange="fullscreenchange">
-                </video>
+                <!-- <image src="../images/video/711.PNG" mode="aspectFill"></image> -->
+                <video class="videoContent" show-center-play-btn="true" src="{{tempFilePath}}" bindfullscreenchange="fullscreenchange"></video>
             </view>
         </view>
     </view>
     <view class="footerbtn">
-        <button type="default" style="width:40%;" bindtap="chooseVideo" wx:if="{{clickFlag}}">选择视频</button>
-        <button type="default" style="width:40%;color:#cccccc;" wx:else>选择视频</button>
-        <button type="primary" style="width:40%;" bindtap="saveVideo">上传保存</button>
+        <button class="button1" type="default" style="width:40%;" bindtap="chooseVideo" wx:if="{{clickFlag}}">
+            <image class="button_image1" src="/images/video/esd.png"></image>
+        </button>
+        <button class="button1" type="default" style="width:40%;color:#cccccc;" wx:else>
+            <image class="button_image2" src="/images/video/sd.png"></image>
+        </button>
+        <button class="button2" style="width:40%;" bindtap="saveVideo">上传保存</button>
     </view>
+    <!-- <view class="videoname">
+        <text>已上传视频 {{num}}个</text>
+        <view wx:for="{{videolist}}" wx:key="num" wx:for-index="idx" wx:for-item="item">
+        <view class="item">
+            <view class='itemname'>
+                {{idx}}: {{item.name}}
+            </view>
+            <view class='itemdate'>
+                {{item.createtime}}
+            </view>
+        </view>
+        </view>
+    </view> -->
 </view>

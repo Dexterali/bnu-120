@@ -70,7 +70,7 @@
     padding: 0rpx 56rpx;
     top: 90rpx;
     border-radius: 6rpx;
-    background: rgba(39, 130, 215, 0.781);
+    background: rgb(74, 138, 223);
 }
 
 .list-item {
@@ -120,7 +120,7 @@
 .myview {
     width: 100%;
     height: 100vh;
-    background-color: rgb(235, 207, 189);
+    background-color: rgb(255, 255, 255);
 }
 
 

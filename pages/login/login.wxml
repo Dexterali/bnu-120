@@ -1,7 +1,7 @@
 <!--pages/login/login.wxml-->
 <view class="container">
   <view class="login-icon">
-    <image class="login-img" src="/images/login/loginLog.jpg"></image>
+    <image class="login-img" src="/images/login/1202.png"></image>
   </view>
   <view class="login-from">
     <!-- 账号 -->

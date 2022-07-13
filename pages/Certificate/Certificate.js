@@ -131,7 +131,6 @@ Page({
         [promise1,promise2]
       ).then(res => {
         // 绘制白色背景
-        // util.roundRect(ctx, 0, 0, posterDatas.width, posterDatas.height, 10);
         ctx.fillStyle = "#ffffff";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         //绘制[证书图片]
@@ -144,7 +143,6 @@ Page({
         ctx.textAlign = "center"
         ctx.fillText('姓名:' + posterDatas.cert_name, 65, 140);
         ctx.fillText('感谢您在120周年校庆中作出的贡献！', 155, 170);
-        //ctx.fillText('证书已生成', 155, 250);
 
         // 关闭loading
         wx.hideLoading();
