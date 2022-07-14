@@ -24,15 +24,11 @@ Page({
             id: '1'
         },
         {
-            title: '管理员登陆',
-            id: '2'
-        },
-        {
             title: '联系我们',
             id: '3'
         },
         {
-            title: '获取荣誉证书',
+            title: '管理员登陆',
             id: '4'
         }
         ],
@@ -76,13 +72,28 @@ Page({
         // console.log("currentTarget.dataset.id::",e.currentTarget.dataset)
 
         if (e.currentTarget.dataset.id === "1") {
-            // console.log(this.data.userList)
-            const oldUserInfo = JSON.stringify(this.data.userList[0]);
-            console.log(oldUserInfo)
-            wx.redirectTo({
-                url: '../message/message?oldUserInfo=' + oldUserInfo,
-            })
-        } else if (e.currentTarget.dataset.id === "2") {
+            const that = this
+            //如果之前没有改用户，则不应该让用户修改个人信息，在这里加以限制
+            if (this.data.userList.length != 0) {
+                const oldUserInfo = JSON.stringify(this.data.userList[0]);
+                console.log(oldUserInfo)
+                wx.redirectTo({
+                    url: '../message/message?oldUserInfo=' + oldUserInfo,
+                })
+            } else {
+                //提示用户先完善个人信息
+                wx.showModal({
+                    title: "提示",
+                    content: "请先完善信息",
+                    success: function () {
+                        that.setData({
+                            conditionVisible: !that.data.conditionVisible
+                        })
+                    },
+                });
+            }
+
+        } else if (e.currentTarget.dataset.id === "4") {
             wx.redirectTo({
                 url: '../login/login'
             })
@@ -92,9 +103,8 @@ Page({
                 url: '../about/about'
             })
         }
-        else if (e.currentTarget.dataset.id === "4") {
+        else if (e.currentTarget.dataset.id === "2") {
             wx.redirectTo({
-
                 url: '../Certificate/Certificate'
             })
         }
@@ -107,6 +117,12 @@ Page({
         // 跳转至uploadVideo页面
         wx.redirectTo({
             url: '../uploadVideo/uploadVideo'
+        })
+    },
+    //证书
+    gotoCertificate: function () {
+        wx.redirectTo({
+            url: '../Certificate/Certificate'
         })
     },
     exit: function (e) {
@@ -170,6 +186,7 @@ Page({
             .then(res => {
                 console.log("ahahhahh", res)
                 console.log(this.data.openId)
+                //在这里需要判断一下，我们是否拿到了用户数据，而不是看是否调用get成功
                 if (res.data.length != 0) {
                     this.setData({
                         userList: res.data,
@@ -192,11 +209,14 @@ Page({
         wx.cloud.database().collection('video').where({
             _openid: that.data.openId
         }).get().then(res => {
-            that.setData({
-                videoList: res.data,
-                videoInfo: true
-            })
             console.log(res)
+            //在这里需要判断一下，我们是否拿到了视频数据，而不是看是否调用get成功
+            if (res.data.length != 0) {
+                that.setData({
+                    videoList: res.data,
+                    videoInfo: true
+                })
+            }
         }).catch(res => {
             console.log('fail')
         })
@@ -217,6 +237,7 @@ Page({
         })
     },
     delvideo(e) {
+        console.log("wwwwwwwwwww", e)
         const that = this;
         wx.cloud.callFunction({
             name: 'delvideo',
@@ -227,8 +248,8 @@ Page({
                 console.log(res);
                 that.getvideolist();
             },
-            fail() {
-                console.log("false")
+            fail(err) {
+                console.log("false", err)
             }
         })
     },

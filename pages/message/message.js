@@ -3,15 +3,21 @@ Page({
         date: "",
         loading: false,
         //旧信息集合
-        oldUserInfo: {},
+        oldUserInfo: {
+            
+        },
     },
     onLoad: function (e) {
-        const oldUserInfo = JSON.parse(e.oldUserInfo)
-        console.log(oldUserInfo)
-        this.setData({
-            oldUserInfo
-        })
-        console.log(this.data.oldUserInfo)
+        //修改或者完善信息时可能没有之前的旧的记录，在这里做一下非空判断，如果有
+        //旧的信息则设置oldUserInfo
+        if (JSON.stringify(e) != "{}") {
+            const oldUserInfo = JSON.parse(e.oldUserInfo)
+            console.log(oldUserInfo)
+            this.setData({
+                oldUserInfo
+            })
+            console.log(this.data.oldUserInfo)
+        }
     },
 
     //上传到数据库
@@ -151,7 +157,7 @@ Page({
                                 //     delta: 1,
                                 // });
                                 wx.redirectTo({
-                                  url: '../home/home',
+                                    url: '../home/home',
                                 })
                             } else {
                                 wx.showModal({

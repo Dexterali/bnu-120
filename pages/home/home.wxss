@@ -32,19 +32,20 @@
 /* 导航栏结束 */
 
 /* 下拉菜单 */
-.Icon{
+.Icon {
     /* 固定不动 */
     position: fixed;
     width: 60rpx;
     height: 60rpx;
     /* 最顶层 */
-    z-index:1000
+    z-index: 1000
 }
+
 .list {
     /* 固定不动 */
     position: fixed;
     width: 210rpx;
-    height: 450rpx;
+    height: 360rpx;
 }
 
 .listIcon {
@@ -95,6 +96,18 @@
 
 
 /* 悬浮按钮 */
+.button {
+    position: fixed;
+    bottom: 190px;
+    right: 90px;
+    box-shadow: 0cm;
+}
+
+.buttonText {
+    bottom: 40px;
+    right: 60px;
+}
+
 .releaseBtn {
     position: fixed;
     bottom: 60px;
@@ -190,20 +203,40 @@
     align-items: center;
 }
 
-.pleText {
+.welcome {
+    width: 100%;
+    height: 53%;
+    text-align: center;
+    display: flex 1;
     align-items: center;
+    justify-content: center;
 }
 
+.pleText {
+    height: 20%;
+    width: 100%;
+    align-items: center;
+    background-color: rgba(253, 218, 227, 0.5);
+    font-family: 楷体;
+    font-size: large;
+    text-align: center;
+}
+
+.pleUp {
+    margin-top: 30px;
+    height: 20%;
+}
 
 /* 视频信息 */
 .mybelowview {
+    height: 74%;
     column-count: 1;
-    column-gap: 10rpx;
+    /* column-gap: 10rpx; */
 }
 
 .belowVisible {
     width: 100%;
-    height: 100%
+    height: 80%
 }
 
 .videoList {
@@ -218,9 +251,9 @@
 .videoitem {
     column-count: 2;
     border: solid rgb(211, 169, 169) 2px;
-    width: 100%;
-    font-size: 16px;
+    width: 98%;
     background-color: #FFF;
+    /* 弧度 */
     border-radius: 20rpx;
     display: inline-block;
 }
@@ -232,23 +265,31 @@
 }
 
 .text {
-    width: 90%;
-    height: 210rpx;
-    overflow: hidden;
+
+    width: 100%;
+    /* overflow: hidden; */
     /* //文字隐藏后添加省略号 */
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     /* //强制不换行 */
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 .box2 {
-    overflow: hidden;
+
+    /* overflow: hidden; */
     /* //文字隐藏后添加省略号 */
     text-overflow: ellipsis;
     /* //强制不换行 */
+    /* white-space: nowrap; */
+
+    /*  */
+    overflow:scroll;
+    text-overflow: ellipsis;
     white-space: nowrap;
+
     width: 99%;
-    height: 210rpx;
+    height: 100%;
+    margin-top: 15px;
     display: flex;
     align-items: center;
     color: rgb(0, 0, 0);

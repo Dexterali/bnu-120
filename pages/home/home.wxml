@@ -3,12 +3,13 @@
     <view class='nav-title' style='top:{{top}}px'>BNU120</view>
 </view>
 <!-- 下拉菜单 -->
-<view class='Icon' style='top:{{top}}px;    z-index:1000 '>
+<view class='Icon' style='top:{{top}}px;  z-index:1000 '>
     <image bindtap="showCondition" class="listIcon" src="/images/list.png" />
 </view>
-<view class='list' style=" top: {{top}}px; z-index: {{conditionVisible ? '100': '1'}}">
+<view class='list' style=" top: {{top}}px;  z-index: {{conditionVisible ? '100': '1'}}">
     <!-- conditionVisible,展开列表 -->
-    <cover-view class="option-list" style="height: {{conditionVisible ? '360rpx': '0'}}">
+    <!-- 在这里改下拉菜单的长度height -->
+    <cover-view class="option-list" style="height: {{conditionVisible ? '270rpx': '0'}}">
         <cover-view bindtap="onChnageCondition" data-id="{{item.id}}" class="list-item" wx:for="{{conditionList}}" wx:key="index" wx:for-index="index">
             <cover-view class="title">{{item.title}}</cover-view>
         </cover-view>
@@ -37,30 +38,46 @@
         </view>
         <!-- 没有list，才有以下内容 是不是可以删掉--》【wx:if="{{!info}} -->
         <view wx:if="{{!info}}" class="please">
-            <view class="pleText" style="position: relative; top: 90rpx">
-                <span>庆祝语</span>
-            </view>
             <!-- <button bind:chooseavatar="upInfo"  type="default" style="position: relative; top: 190rpx">请完善您的信息</button> -->
-            <button bindtap="upInfo" type="default" style="position: relative; top: 190rpx">
+            <button bindtap="upInfo" type="default" style="position: relative; top: 90rpx">
                 请完善您的信息
             </button>
         </view>
     </view>
     <view class="mybelowview">
-        <!-- 有数据 才有videoInfo=true -->
-        <view wx:if="{{videoInfo}}" wx:for="{{videoList}}" wx:key="_id" wx:for-index="index" wx:for-item="item">
-            <view class="videoitem" data-id="{{item}}" bindlongpress="del">
-                <video class="video" src="{{item.videourl}}" object-fit="contain" play-btn-position="center"></video>
-                <view class="text">
-                    <text class="box2">视频名称：{{item.name}}</text>
-                    <view class="box2">上传时间：{{item.createtime}}</view>
-                    <view class="box2">视频简介：{{item.text}}</view>
+        <view class="belowVisible" wx:if="{{videoInfo}}">
+            <!-- 有数据 才有videoInfo=true -->
+            <view>轻点预览，长按删除</view>
+            <view style="position: relative; top: 6rpx; text-align: center; height: 270rpx;" wx:for="{{videoList}}" wx:key="_id" wx:for-index="index" wx:for-item="item">
+                <view class="videoitem" data-id="{{item}}" bindlongpress="del">
+                    <video class="video" src="{{item.videourl}}" object-fit="contain" play-btn-position="center"></video>
+                    <view class="text">
+                        <!-- 在这里，把时间改短一点：19:01:01 2022.07.14  -->
+                        <text class="box2">视频名称：{{item.name}}</text>
+                        <view class="box2">视频简介：{{item.text}}</view>
+                        <view class="box2">{{item.createtime}}</view>
+                    </view>
                 </view>
             </view>
+            <view style="position: relative; top: 60rpx; text-align: center;">
+                <text>感谢您对北师大校庆做出的贡献</text>
+                <button bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
+            </view>
         </view>
-        <view wx:if="{{!videoInfo}}">暂未上传视频！</view>
+
+        <!-- 这里videoInfo ？ -->
+        <view wx:if="{{!videoInfo}}" class="welcome">
+            <view class="pleText"><text style="position: relative; top: 30rpx">百廿有你 一路偕行</text> </view>
+            <view class="pleText"><text style="position: relative; top: 30rpx">希望下个相遇时刻</text></view>
+            <view class="pleText"><text style="position: relative; top: 30rpx">你的祝福也如期而至</text></view>
+            <view class="pleText"> <text style="position: relative; top: 30rpx">百廿祝福 未完待续……</text> </view>
+            <view class="pleUp"> 
+                <text>点击加号上传视频</text> 
+            </view>
+        </view>
     </view>
 </view>
+
 <!-- 弹出按钮 -->
 <view bindtap="gotoUpdate" class="releaseBtn">
     <image class="releaseIcon" src="/images/add2.png" />
