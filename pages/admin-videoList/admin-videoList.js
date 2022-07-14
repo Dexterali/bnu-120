@@ -41,7 +41,7 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () { },
+  onUnload: function () {},
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -153,8 +153,10 @@ Page({
       }
     })
   },
-  delvideo(e) {
+  delvideo(e,all) {
+    console.log("e=",e)
     const that = this;
+    if(!all)e = e.currentTarget.dataset.id
     wx.cloud.callFunction({
       name: 'delvideo',
       data: {
@@ -164,8 +166,8 @@ Page({
         console.log(res);
         that.getvideolist();
       },
-      fail() {
-        console.log("false")
+      fail(err) {
+        console.log("删除失败false",err)
       }
     })
   },
@@ -205,6 +207,31 @@ Page({
       }
     })
   },
+  delete() {
+    const that = this;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除所选视频？',
+      confirmColor: '#FF0000',
+      success(res) {
+        if (res.confirm) {
+          that.delall()
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  delall(){
+    for (let i = 0; i < this.data.count; i++) {
+      console.log(i,this.data.videolist[i].checked)
+      if (this.data.videolist[i].checked) {
+        // console.log(this.data.videolist[i])
+        this.delvideo(this.data.videolist[i],true);
+      }
+    }
+  },
+
 
   /**
    * 生命周期函数--监听页面卸载

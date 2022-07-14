@@ -5,6 +5,7 @@
     <checkbox-group bindchange="changeall">
       <checkbox model:checked="{{allchecked}}">全选</checkbox>
     </checkbox-group>
+    <button bindtap="delete" style="margin: 10rpx;" size="mini" type="warn">删除</button>
     <button bindtap="download" style="margin: 10rpx;" size="mini" type="primary">下载</button>
   </view>
   <view>
