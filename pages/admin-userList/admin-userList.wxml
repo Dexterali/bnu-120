@@ -17,8 +17,8 @@
         </view> -->
         <view>
             <view>姓名：{{item.name}}</view>
-            <view>学号：{{item.no}}</view>
-            <view>性别：{{item.gender}}</view>
+            <view>联系方式：{{item.phone}}</view>
+            <!-- <view>性别：{{item.gender}}</view> -->
             <view>年级：{{item.grade}}</view>
             <view>------------------------</view>
         </view>

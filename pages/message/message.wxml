@@ -4,7 +4,7 @@
             <view class="title">姓名：</view>
             <input value="{{oldUserInfo.name}}" type="name" class="input" name="name" placeholder="姓名：" />
         </view>
-        <view class="section">
+        <!-- <view class="section">
             <view class="title">性别：</view>
             <radio-group class="mg" name="gender">
                 <label>
@@ -16,7 +16,7 @@
                     女
                 </label>
             </radio-group>
-        </view>
+        </view> -->
         <view class="section">
             <view class="title">年级：</view>
             <picker bindchange="dateChange" fields="year" value="{{date}}" mode="date" class="input" name="grade">

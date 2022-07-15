@@ -10,7 +10,7 @@ Page({
     onLoad: function (e) {
         //修改或者完善信息时可能没有之前的旧的记录，在这里做一下非空判断，如果有
         //旧的信息则设置oldUserInfo
-        if (JSON.stringify(e) != "{}") {
+        if (JSON.stringify(e) !== "{}") {
             const oldUserInfo = JSON.parse(e.oldUserInfo)
             console.log(oldUserInfo)
             this.setData({
@@ -34,13 +34,13 @@ Page({
             });
             return;
         }
-        if (!u.gender) {
-            wx.showToast({
-                title: "请选择性别",
-                icon: "error",
-            });
-            return;
-        }
+        // if (!u.gender) {
+        //     wx.showToast({
+        //         title: "请选择性别",
+        //         icon: "error",
+        //     });
+        //     return;
+        // }
         if (!u.grade) {
             wx.showToast({
                 title: "请选择年级",
@@ -76,7 +76,7 @@ Page({
                             data: {
                                 createdate: this.data.date,
                                 name: u.name,
-                                gender: u.gender,
+                                // gender: u.gender,
                                 grade: u.grade,
                                 phone: u.phone,
                                 // _openid: e.openid
@@ -131,7 +131,7 @@ Page({
                             data: {
                                 createdate: this.data.date,
                                 name: u.name,
-                                gender: u.gender,
+                                // gender: u.gender,
                                 grade: u.grade,
                                 phone: u.phone,
                                 // _openid: e.openid

@@ -121,6 +121,21 @@ Page({
     },
     //证书
     gotoCertificate: function () {
+        /* 
+          * 之前的问题在这里就不需要解决了，
+          * 因为当用户上传的视频清空时我在下面把videoinfo设置为了false，
+          * 这样就不显示生成证书按钮了  
+        */
+        // if (this.data.userList.length === 0) {
+        //     wx.showModal({
+        //         title: "提示",
+        //         content: "请先上传视频！",
+        //     });
+        // } else {
+            // wx.redirectTo({
+            //     url: '../Certificate/Certificate'
+            // })
+        // }
         wx.redirectTo({
             url: '../Certificate/Certificate'
         })
@@ -187,7 +202,7 @@ Page({
                 console.log("ahahhahh", res)
                 console.log(this.data.openId)
                 //在这里需要判断一下，我们是否拿到了用户数据，而不是看是否调用get成功
-                if (res.data.length != 0) {
+                if (res.data.length !== 0) {
                     this.setData({
                         userList: res.data,
                         info: true
@@ -211,10 +226,16 @@ Page({
         }).get().then(res => {
             console.log(res)
             //在这里需要判断一下，我们是否拿到了视频数据，而不是看是否调用get成功
-            if (res.data.length != 0) {
+            if (res.data.length !== 0) {
                 that.setData({
                     videoList: res.data,
                     videoInfo: true
+                })
+            } else {
+                // 如果从数据库没有获得视频则清理一下之前的就记录
+                that.setData({
+                    videoList: [],
+                    videoInfo: false,
                 })
             }
         }).catch(res => {
@@ -238,8 +259,12 @@ Page({
     },
     delvideo(e) {
         console.log("wwwwwwwwwww", e)
+        
         const that = this;
+        //改变传入参数e
+        e = e.currentTarget.dataset.id
         wx.cloud.callFunction({
+            // name: 'delete_video_wj',
             name: 'delvideo',
             data: {
                 e

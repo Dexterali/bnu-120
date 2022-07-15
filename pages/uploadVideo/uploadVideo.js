@@ -132,9 +132,11 @@ Page({
         })
         console.log(that.data.name)
         console.log(tempFilePath)
+        let time = new Date().getTime()
+        let tempname = name + time%1000
         const uploadTask = wx.cloud.uploadFile({
             filePath: tempFilePath, //要上传文件资源的路径（本地路径）
-            cloudPath: name, //云存储的视频名称
+            cloudPath: tempname, //云存储的视频名称
             success: function (res) {
                 //res
                 // errMsg: "cloud.uploadFile:ok"

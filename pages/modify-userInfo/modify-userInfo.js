@@ -25,13 +25,13 @@ Page({
             });
             return;
         }
-        if (!u.gender) {
-            wx.showToast({
-                title: "请选择性别",
-                icon: "error",
-            });
-            return;
-        }
+        // if (!u.gender) {
+        //     wx.showToast({
+        //         title: "请选择性别",
+        //         icon: "error",
+        //     });
+        //     return;
+        // }
         if (!u.grade) {
             wx.showToast({
                 title: "请选择年级",
@@ -58,7 +58,7 @@ Page({
                     id: this.data.modifyID,
                     createdate: this.data.date,
                     name: u.name,
-                    gender: u.gender,
+                    // gender: u.gender,
                     grade: u.grade,
                     phone: u.phone,
                     // _openid: e.openid
