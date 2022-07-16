@@ -153,7 +153,19 @@ Page({
                     //上传信息保存到数据库
                     let num = that.data.num + 1
                     let createtime = new Date()
-                    createtime = createtime.toLocaleString()
+                    createtime = createtime.toLocaleDateString()
+
+                    // let date = new Date();
+                    // console.log(date.toLocaleDateString())//2022/7/16
+                    // console.log(date.toLocaleString())//2022/7/16上午10:42:01
+                    // console.log(date.toLocaleTimeString())//上午10:42:01
+                    // console.log(date.toString())//Sat Jul 16 2022 10:42:01 GMT+0800 (中国标准时间)
+                    // console.log(date.toISOString())//2022-07-16T02:42:01.455Z
+                    // console.log(date.toGMTString())//Sat, 16 Jul 2022 02:42:01 GMT
+                    // console.log(date.toTimeString())//10:42:01 GMT+0800 (中国标准时间)
+                    // console.log(date.toUTCString())//Sat, 16 Jul 2022 02:42:01 GMT
+
+
                     console.log(createtime)
                     wx.cloud.database().collection('video').add({
                         data: {

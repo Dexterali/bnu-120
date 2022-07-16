@@ -59,12 +59,14 @@
                     </view>
                 </view>
             </view>
-            <view style="position: relative; top: 60rpx; text-align: center;">
-                <text>感谢您对北师大校庆做出的贡献</text>
-                <button bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
-            </view>
         </view>
 
+        <!-- 视频过多无法展示生成证书，是这里出了问题，之前下面这个view在上面这个view里，我们需要把他拿出来 -->
+        <view style="position: relative; top: 60rpx; text-align: center;">
+            <text>感谢您对北师大校庆做出的贡献</text>
+            <button bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
+        </view>
+        
         <!-- 这里videoInfo ？ -->
         <view wx:if="{{!videoInfo}}" class="welcome">
             <view class="pleText"><text style="position: relative; top: 30rpx">百廿有你 一路偕行</text> </view>

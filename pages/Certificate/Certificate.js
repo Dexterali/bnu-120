@@ -141,7 +141,11 @@ Page({
 			ctx.font = "bold 15px Arial"; //字体大小
 			ctx.fillStyle = "#000"; //字体颜色
 			ctx.textAlign = "center"
-			ctx.fillText('姓名:' + posterDatas.cert_name, 65, 140);
+			if(posterDatas.cert_name.length === 0) {
+				ctx.fillText('姓名: 校友！', 65, 140);
+			} else {
+				ctx.fillText('姓名:' + posterDatas.cert_name, 65, 140);
+			}
 			ctx.fillText('感谢您在120周年校庆中作出的贡献！', 155, 170);
 
 			// 关闭loading

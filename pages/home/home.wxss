@@ -229,7 +229,7 @@
 
 /* 视频信息 */
 .mybelowview {
-    height: 74%;
+    height: 100%;
     column-count: 1;
     /* column-gap: 10rpx; */
 }
