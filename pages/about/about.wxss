@@ -1,1 +1,55 @@
 /* pages/about/about.wxss */
+
+.bottom {
+    height: auto;
+    /* 边框 */
+    border-radius: 29rpx;
+    width: 70%;
+    margin: auto;
+    display: flex 1;
+    background-color: #00000075;
+    font-size: 26px;
+}
+
+.above {
+    height: auto;
+    display: flex;
+}
+
+.count {
+    color: rgb(255, 255, 255);
+    flex: 1;
+    font-size: 23px;
+    writing-mode: vertical-lr;
+}
+.djs{
+    margin-right: 50%;
+    text-align: center;
+}
+
+.when {
+    font-size: 53px;
+    color: rgb(255, 210, 0);
+    flex: 1;
+}
+
+.day {
+    color: rgb(255, 255, 255);
+    flex: 1;
+    font-size: 50px;
+}
+
+.below {
+    height: auto;
+    width: 100%;
+}
+.a{
+    border-bottom: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-decoration: linen
+}
+.b{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
