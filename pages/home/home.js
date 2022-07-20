@@ -19,18 +19,27 @@ Page({
         // 下拉菜单的数据
         tabType: 'tab1',
         key: 'tab1',
-        conditionList: [{
-            title: '修改您的信息',
-            id: '1'
-        },
-        {
-            title: '联系我们',
-            id: '3'
-        },
-        {
-            title: '管理员登陆',
-            id: '4'
-        }
+        conditionList: [
+            {
+                title: '修改信息',
+                id: '1'
+            },
+            {
+                title: '管理员登陆',
+                id: '2'
+            },
+            {
+                title: '联系我们',
+                id: '3'
+            },
+            // {
+            //     title: '退出登录',
+            //     id: '4'
+            // },
+            {
+                title: '注销账户',
+                id: '5'
+            },
         ],
 
         choosedCondition: {
@@ -48,17 +57,60 @@ Page({
     // ----
     //完善个人信息界面
     upInfo: function () {
-        wx.navigateTo({
-            url: '../message/message',
-        }).then(res => {
-            console.log(res)
-            if (res.errMsg === 'navigateTo:ok') {
-                // this.setData({
-                //     info: true
-                // })
-                this.onShow()
+        const that = this
+        //提示用户先完善个人信息
+        wx.showModal({
+            title: "提示",
+            content: "这将收集你的信息！是否继续？点击取消将为你生成预设信息",
+            success: function (res) {
+                if (res.confirm) {
+                    wx.navigateTo({
+                        url: '../message/message',
+                    }).then(res => {
+                        console.log(res)
+                        if (res.errMsg === 'navigateTo:ok') {
+                            that.onShow()
+                        }
+                    })
+                } else if (res.cancel) {
+                    console.log('用户点击取消')
+                    let createtime = new Date()
+                    createtime = createtime.toLocaleDateString()
+                    let autoUserInfo = {
+                        createdate: createtime,
+                        name: "校友",
+                        grade: "2019",
+                        phone: "12345",
+                    }
+                    wx.cloud.database()
+                        .collection('user')
+                        .add({
+                            data: autoUserInfo
+                        }).then(res => {
+                            console.log("成功")
+                            that.onShow()
+                        })
+                        .catch(err => {
+                            console.log("失败")
+                        })
+                }
             }
-        })
+            // ,
+            // fail: function() {
+
+            // }
+        });
+        // wx.navigateTo({
+        //     url: '../message/message',
+        // }).then(res => {
+        //     console.log(res)
+        //     if (res.errMsg === 'navigateTo:ok') {
+        //         // this.setData({
+        //         //     info: true
+        //         // })
+        //         this.onShow()
+        //     }
+        // })
     },
     // 是否展开列表
     showCondition() {
@@ -93,21 +145,55 @@ Page({
                 });
             }
 
-        } else if (e.currentTarget.dataset.id === "4") {
+        } else if (e.currentTarget.dataset.id === "2") {
+            //管理员登录
             wx.redirectTo({
                 url: '../login/login'
             })
         } else if (e.currentTarget.dataset.id === "3") {
+            //联系我们
             wx.redirectTo({
-                // 界面也没写
                 url: '../about/about'
             })
         }
-        else if (e.currentTarget.dataset.id === "2") {
-            wx.redirectTo({
-                url: '../Certificate/Certificate'
-            })
+        // else if (e.currentTarget.dataset.id === "4") {
+        //     //退出登录
+        //     wx.exitMiniProgram({
+        //         success: function () {
+        //             console.log("bye")
+        //         }
+        //     })
+        // } 
+        else if (e.currentTarget.dataset.id === "5") {
+            //注销登录
+            const that = this
+            //询问用户是否注销账户
+            wx.showModal({
+                title: "提示",
+                content: "这将删除你的个人信息和上传的视频！是否继续？",
+                success: function (res) {
+                    if (res.confirm) {
+                        wx.cloud.database()
+                            .collection('user')
+                            .where({
+                                _openid: that.data.openId
+                            })
+                            .remove()
+                            .then(res => {
+                                console.log("成功")
+                                that.showCondition()
+                                that.onShow()
+                            })
+                            .catch(err => {
+                                console.log("失败")
+                            })
+                    } else if (res.cancel) {
+                        console.log('用户点击取消')
+                    }
+                }
+            });
         }
+
 
     },
     // ----
@@ -132,9 +218,9 @@ Page({
         //         content: "请先上传视频！",
         //     });
         // } else {
-            // wx.redirectTo({
-            //     url: '../Certificate/Certificate'
-            // })
+        // wx.redirectTo({
+        //     url: '../Certificate/Certificate'
+        // })
         // }
         wx.redirectTo({
             url: '../Certificate/Certificate'
@@ -208,6 +294,12 @@ Page({
                         info: true
                     })
                     console.log(this.data.userList)
+                } else {
+                    //如果没有数据，为了保障不出错，清空一下之前的记录
+                    this.setData({
+                        userList: '',
+                        info: false
+                    })
                 }
             })
             .catch(err => {
@@ -259,7 +351,7 @@ Page({
     },
     delvideo(e) {
         console.log("wwwwwwwwwww", e)
-        
+
         const that = this;
         //改变传入参数e
         e = e.currentTarget.dataset.id
