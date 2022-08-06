@@ -3,15 +3,16 @@
     "pages/home/home", 
     "pages/login/login",
     "pages/uploadVideo/uploadVideo",
-    "pages/port/port",
+    "pages/about/about",
     "pages/admin-videoList/admin-videoList",
     "pages/Certificate/Certificate"
   ],
   "window":{
+    "backgroundcolor": "white",
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#E3170D",
-    "navigationBarTitleText": "BNU120",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle":"black",
+    "navigationBarTitleText": "BNU120"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -9,7 +9,7 @@
 <view class='list' style=" top: {{top}}px;  z-index: {{conditionVisible ? '100': '1'}}">
     <!-- conditionVisible,展开列表 -->
     <!-- 在这里改下拉菜单的长度height -->
-    <cover-view class="option-list" style="height: {{conditionVisible ? '370rpx': '0'}}">
+    <cover-view class="option-list" style="height: {{conditionVisible ? 'auto': '0'}}">
         <cover-view bindtap="onChnageCondition" data-id="{{item.id}}" class="list-item" wx:for="{{conditionList}}" wx:key="index" wx:for-index="index">
             <cover-view class="title">{{item.title}}</cover-view>
         </cover-view>
@@ -17,6 +17,7 @@
 </view>
 <!-- 正文 -->
 <view style="padding-top: {{navHeight}}px;" class="myview">
+    <image class="homeImg" src="/images/login/1202.png"></image>
     <view class="mybelowview">
         <view class="belowVisible" wx:if="{{videoInfo}}">
             <!-- 有数据 才有videoInfo=true -->
