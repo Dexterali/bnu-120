@@ -113,10 +113,10 @@ Page({
                 icon: 'success',
                 duration: 2000
             })
-            // 跳转至index页面
+            // 跳转至管理视频页面
             wx.redirectTo({
-                url: '../port/port'
-            })
+                url: '../admin-videoList/admin-videoList'
+            });
         } else {
             console.log("密码错误", this.data)
             wx.showToast({

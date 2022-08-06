@@ -62,17 +62,5 @@ Page({
      */
     onShareAppMessage() {
 
-    },
-
-    manage_video: function() {
-        wx.redirectTo({
-            url: '../admin-videoList/admin-videoList'
-        });
-    },
-
-    manage_user: function() {
-        wx.redirectTo({
-            url: '../admin-userList/admin-userList'
-        });
     }
 })

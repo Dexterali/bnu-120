@@ -17,33 +17,6 @@
 </view>
 <!-- 正文 -->
 <view style="padding-top: {{navHeight}}px;" class="myview">
-    <view class="mytopview">
-        <!-- 有数据 才有info=true -->
-        <!-- 有list，才有以下内容 -->
-        <view class="topVisible" wx:if="{{info}}" wx:for="{{userList}}" wx:key="_id">
-            <view class="imgview">
-                <!-- 以下style只调整大小，别放到wxss里 -->
-                <!--  -->
-                <button class="fview" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar" style="z-index: 10; width:160rpx;height:160rpx;padding:0;">
-                    <image class="cimg" style="width:160rpx;height:160rpx;padding:0;" src="{{avatarUrl}}"></image>
-                    <!-- <open-data type="userAvatarUrl"></open-data> -->
-                </button>
-                <!--  -->
-            </view>
-            <view class="infoview">
-                <view class="box">姓名: {{item.name}}</view>
-                <view class="box">入学年份:{{item.grade}}级</view>
-                <view class="box">联系方式:{{item.phone}}</view>
-            </view>
-        </view>
-        <!-- 没有list，才有以下内容 是不是可以删掉--》【wx:if="{{!info}} -->
-        <view wx:if="{{!info}}" class="please">
-            <!-- <button bind:chooseavatar="upInfo"  type="default" style="position: relative; top: 190rpx">请完善您的信息</button> -->
-            <button bindtap="upInfo" type="default" style="position: relative; top: 90rpx">
-                请完善您的信息
-            </button>
-        </view>
-    </view>
     <view class="mybelowview">
         <view class="belowVisible" wx:if="{{videoInfo}}">
             <!-- 有数据 才有videoInfo=true -->
@@ -60,12 +33,6 @@
                 </view>
             </view>
         </view>
-
-        <!-- 视频过多无法展示生成证书，是这里出了问题，之前下面这个view在上面这个view里，我们需要把他拿出来 -->
-        <view style="position: relative; top: 60rpx; text-align: center;">
-            <text>感谢您对北师大校庆做出的贡献</text>
-            <button bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
-        </view>
         
         <!-- 这里videoInfo ？ -->
         <view wx:if="{{!videoInfo}}" class="welcome">
@@ -76,6 +43,11 @@
             <view class="pleUp"> 
                 <text>点击加号上传视频</text> 
             </view>
+        </view>
+        
+        <!-- 视频过多无法展示生成证书，是这里出了问题，之前下面这个view在上面这个view里，我们需要把他拿出来 -->
+        <view style="position: relative; top: 60rpx; text-align: center;">
+            <button wx:if="{{videoInfo}}" bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
         </view>
     </view>
 </view>

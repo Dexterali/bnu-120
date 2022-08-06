@@ -44,44 +44,13 @@ Page({
 				posterDatas.canvas = canvas
 				posterDatas.ctx = ctx
 				posterDatas.dpr = dpr
+				//暂定证书名为“校友”
+				posterDatas.cert_name = "校友"
 				//存储
 				that.setData({
 					posterDatas
 				})
 			}).exec()
-
-		//获取证书需要的信息
-		wx.cloud.callFunction({
-			name: 'get_openid_wj',
-			data: {
-				type: 'get_openid_wj'
-			}
-		}).then((resp) => {
-			console.log("调用成功")
-			this.setData({
-				openId: resp.result.openid
-			})
-			//进行数据库操作
-			console.log("openid：", this.data.openId)
-			const db = wx.cloud.database()
-			db.collection('user')
-				.where({
-					_openid: this.data.openId
-				})
-				.get()
-				.then(res => {
-					posterDatas['cert_name'] = res.data[0].name
-				})
-				.catch(err => {
-					//console.log("ddsds:",re)
-					console.log(err + "请求失败")
-				})
-
-
-		}).catch((e) => {
-			console.log("调用失败")
-		});
-
 	},
 
 	//证书生成
