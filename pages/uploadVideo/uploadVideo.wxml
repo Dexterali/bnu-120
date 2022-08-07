@@ -1,15 +1,21 @@
 <view class="main">
     <view class="videoname">
-        <text>视频名称</text>
+        <text style="position: relative; left: 0rpx; top: -1rpx">您的姓名</text>
         <input model:value="{{name}}" class="name" type="text" placeholder="（可选）" bindinput="nameinput"></input>
     </view>
+    <view class="section">
+            <view class="videotext">您的年级</view>
+            <picker bindchange="dateChange" fields="year" value="{{date}}" mode="date" class="input" name="grade">
+                <view class="name" style="width: 695rpx; height: 73rpx; display: block; box-sizing: border-box; position: relative; left: 30rpx; top: 0rpx">点击选择年级 {{date}}</view>
+            </picker>
+        </view>
     <view class="videotext">
-        <text>视频简介</text>
-        <textarea model:value="{{text}}" placeholder="输入140字以下视频简介" bindinput="nameinput"></textarea>
+        <text style="position: relative; left: 0rpx; top: -2rpx">视频简介</text>
+        <textarea model:value="{{text}}" placeholder="输入140字以下视频简介" bindinput="nameinput" style="position: relative; left: 0rpx; top: 32rpx"></textarea>
     </view>
     <view class="playerInfo">
         <view class="textvideo" wx:if="{{notmakesure}}">
-            <view class="videoContent">
+            <view class="videoContent" style="position: relative; left: 0rpx; top: 31rpx">
                 <!-- 希望上传什么样的视频 -->
                 <view class="tips">
                     <!-- <view class="title">上传视频</view>
@@ -20,18 +26,19 @@
         <view class="video" wx:else>
             <view class="videoContent">
                 <!-- <image src="../images/video/711.PNG" mode="aspectFill"></image> -->
+                <text class="videotext">您的年级</text>
                 <video class="videoContent" show-center-play-btn="true" src="{{tempFilePath}}" bindfullscreenchange="fullscreenchange"></video>
             </view>
         </view>
     </view>
     <view class="footerbtn">
-        <button class="button1" type="default" style="width:40%;" bindtap="chooseVideo" wx:if="{{clickFlag}}">
-            <image class="button_image1" src="/images/video/esd.png"></image>
+        <button class="button1" type="default" style="width: 40%; position: relative; left: 0rpx; top: 40rpx" bindtap="chooseVideo" wx:if="{{clickFlag}}">
+            <image class="button_image1" src="/images/video/esd.png" style="position: relative; left: -6rpx; top: 12rpx"></image>
         </button>
-        <button class="button1" type="default" style="width:40%;color:#cccccc;" wx:else>
-            <image class="button_image2" src="/images/video/sd.png"></image>
+        <button class="button1" type="default" style="width: 40%; position: relative; left: 0rpx; top: 40rpx" wx:else>
+            <image class="button_image2" src="/images/video/sd.png" style="position: relative; left: -6rpx; top: 12rpx"></image>
         </button>
-        <button class="button2" style="width:40%;" bindtap="saveVideo">上传保存</button>
+        <button class="button2" style="width: 40%; position: relative; left: -12rpx; top: 40rpx" bindtap="saveVideo">上传保存</button>
     </view>
     <!-- <view class="videoname">
         <text>已上传视频 {{num}}个</text>

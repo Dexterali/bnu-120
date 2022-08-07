@@ -11,7 +11,11 @@ Page({
 			height: 300, //画布高度
 			// 缓冲区，无需手动设定
 			openId: '',
-			cert_name: '',
+            cert_name: '',
+            grade:'',
+            year:'',
+            month:'',
+            day:'',
 			pic: null,
 			buttonType: 1,
 			show: false, // 显示隐藏证书弹窗
@@ -45,12 +49,52 @@ Page({
 				posterDatas.ctx = ctx
 				posterDatas.dpr = dpr
 				//暂定证书名为“校友”
-				posterDatas.cert_name = "校友"
+				//posterDatas.cert_name = "校友"
 				//存储
 				that.setData({
 					posterDatas
 				})
-			}).exec()
+            }).exec()
+            
+            //获取证书需要的信息
+		wx.cloud.callFunction({
+			name: 'get_openid_wj',
+			data: {
+				type: 'get_openid_wj'
+			}
+		}).then((resp) => {
+			console.log("调用成功")
+			this.setData({
+				openId: resp.result.openid
+			})
+			//进行数据库操作
+			console.log("openid：", this.data.openId)
+			const db = wx.cloud.database()
+			db.collection('user')
+				.where({
+					_openid: this.data.openId
+				})
+				.get()
+				.then(res => {
+                    let createtimes = new Date()
+                    let YEAR = createtimes.getFullYear()
+                    let MONTH = createtimes.getMonth()
+                    let DAY = createtimes.getDate()
+                    posterDatas['cert_name'] = res.data[0].name
+                    posterDatas['grade'] = res.data[0].grade
+                    posterDatas['year'] = YEAR
+                    posterDatas['month'] = MONTH + 1
+                    posterDatas['day'] = DAY
+				})
+				.catch(err => {
+					//console.log("ddsds:",re)
+					console.log(err + "请求失败")
+				})
+
+
+		}).catch((e) => {
+			console.log("调用失败")
+		});
 	},
 
 	//证书生成
@@ -102,7 +146,7 @@ Page({
 			ctx.fillRect(0, 0, canvas.width, canvas.height);
 			//绘制[证书图片]
 			ctx.drawImage(res[0], 0, 0, posterDatas.width, 300);
-			ctx.drawImage(res[1], 95, 195, posterDatas.width / 2.7, 70);
+			ctx.drawImage(res[1], 90, 195, posterDatas.width / 2.5, 80);
 			//名称
 			//底部说明
 			ctx.font = "bold 15px Arial"; //字体大小
@@ -111,9 +155,18 @@ Page({
 			if(posterDatas.cert_name.length === 0) {
 				ctx.fillText('姓名: 校友！', 65, 140);
 			} else {
-				ctx.fillText('姓名:' + posterDatas.cert_name, 65, 140);
+				ctx.fillText(posterDatas.grade + '级校友' + posterDatas.cert_name + ':', 74, 130);
 			}
-			ctx.fillText('感谢您在120周年校庆中作出的贡献！', 155, 170);
+            ctx.fillText('感谢您在120周年校庆中作出的贡献！', 155, 160);
+            ctx.font = "bold 13px Arial"; //字体大小
+            ctx.fillText('人工智能学院', 220, 185);
+            ctx.fillText(posterDatas.year + '年', 200, 207);
+            ctx.fillText(posterDatas.month + '月', 233, 207);
+            ctx.fillText(posterDatas.day + '日', 254, 207);
+            ctx.font = "bold 11px Arial"; //字体大小
+            ctx.fillText(this.data.openId, 188, 277);
+            ctx.font = "bold 9px Arial"; //字体大小
+            ctx.fillText('证书编号', 75, 277);
 
 			// 关闭loading
 			wx.hideLoading();

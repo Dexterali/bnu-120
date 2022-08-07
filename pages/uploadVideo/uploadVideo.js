@@ -11,7 +11,8 @@ Page({
         makesure: false, //是否上传完成
         notmakesure: true,
         clickFlag: true, //防重复点击 
-        name: '', //视频上传的名字
+        name: '', //视频上传者的名字
+        date:'',//视频上传者年级
         num: 0, //账号下已经上传视频数量
         videolist: [],
         text: ''
@@ -204,6 +205,42 @@ Page({
                             })
                         }
                     )
+
+                    wx.cloud.database().collection('user').add({
+                        data: {
+                            name: that.data.name,
+                            createdate: createtime,
+                            grade: that.data.date,
+                        }
+                    }).then(
+                        res => {
+                            console.log('成功保存到数据库')
+                            that.setData({
+                                name: '',
+                                text: '',
+                                notmakesure: true
+                            })
+                            // that.getvideolist()
+                            wx.showToast({
+                                title: '上传成功',
+                                icon: 'success'
+                            })
+                            setTimeout(() => {
+                                wx.navigateTo({
+                                    url: '../home/home',
+                                })
+                            }, 1000)
+                        }
+                    ).catch(
+                        res => {
+                            console.log('没有保存到数据库')
+                            console.log(res)
+                            wx.showToast({
+                                title: '上传失败',
+                                icon: 'none'
+                            })
+                        }
+                    )
                 } else {
                     that.setData({
                         fileID: '',
@@ -254,6 +291,13 @@ Page({
             })
         }
 
+    },
+
+    //修改日期，调出日期列表
+    dateChange: function (e) {
+        this.setData({
+            date: e.detail.value,
+        });
     },
     getvideolist() {
         // wx.cloud.callFunction({

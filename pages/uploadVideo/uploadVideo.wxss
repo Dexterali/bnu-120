@@ -23,7 +23,7 @@ page {
     width: 100vw;
     height: 40vw;
     margin-top:0.5vw ;
-    background: url(https://s3.bmp.ovh/imgs/2022/07/12/be9fa1a838a370f1.png);
+    background: url(https://s3.bmp.ovh/imgs/2022/08/07/6a0b58e70d78a035.png); 
     background-size:100% 100%;
     -moz-background-size:100% 100%;
 
