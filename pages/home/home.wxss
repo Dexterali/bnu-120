@@ -134,10 +134,9 @@
 .myview {
     width: 100%;
     height: 100vh;
-    background-color: rgb(255, 255, 255);
 }
 .homeImg {
-    height: 180px;
+    height: auto;
 }
 
 
@@ -215,14 +214,28 @@
     align-items: center;
     justify-content: center;
 }
+.backimg{
+    height: 30%;
+    width: 100%;
+}
+.head-text{
+    position: relative;
+    z-index: 9;
+    text-align: center;
+    font-weight: 500;
+    font-size: 35rpx;
+    /* color: whitesmoke; */
+    left: 35rpx;
+    bottom: 80rpx;
 
+}
 .pleText {
-    height: 20%;
+    height: 13%;
     width: 100%;
     align-items: center;
+    margin-top: 2%;
     background-color: #fff;
-    font-family: 楷体;
-    font-size: large;
+    /* font-size: large; */
     text-align: center;
 }
 

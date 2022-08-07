@@ -16,8 +16,10 @@
     </cover-view>
 </view>
 <!-- 正文 -->
+
 <view style="padding-top: {{navHeight}}px;" class="myview">
-    <image class="homeImg" src="/images/login/1202.png"></image>
+    <banner />
+
     <view class="mybelowview">
         <view class="belowVisible" wx:if="{{videoInfo}}">
             <!-- 有数据 才有videoInfo=true -->
@@ -34,24 +36,46 @@
                 </view>
             </view>
         </view>
-        
-        <!-- 这里videoInfo ？ -->
+        <!-- 如果没有视频，则展示以下部分 -->
         <view wx:if="{{!videoInfo}}" class="welcome">
-            <view class="pleText"><text style="position: relative; top: 30rpx">百廿有你 一路偕行</text> </view>
-            <view class="pleText"><text style="position: relative; top: 30rpx">希望下个相遇时刻</text></view>
-            <view class="pleText"><text style="position: relative; top: 30rpx">你的祝福也如期而至</text></view>
-            <view class="pleText"> <text style="position: relative; top: 30rpx">百廿祝福 未完待续……</text> </view>
-            <view class="pleUp"> 
-                <text>点击加号上传视频</text> 
+            <!--  -->
+
+            <view style="margin: 5% 15% 3% 15%; border:3rpx solid #faca82; border-radius:10px ; font-size: large; ">点击加号 上传祝福</view>
+            <view class="pleText">
+                <image src="https://120th.bnu.edu.cn/lygimg/ly1.png" style="height:100%;width:100%;">
+                    <text class="head-text">春秋百廿矢志教化，桃李万千育人兴邦</text>
+                </image>
             </view>
+            <view class="pleText">
+                <image src="https://120th.bnu.edu.cn/lygimg/ly2.png" style="height:100%;width:100%;">
+                    <text class="head-text">百廿芳华东西乐育，一体两翼南北丽泽</text>
+                </image>
+            </view>
+            <view class="pleText">
+                <image src="https://120th.bnu.edu.cn/lygimg/ly3.png" style="height:100%;width:100%;">
+                    <text class="head-text">春去秋来京师风光好，花甲重开杏坛又一芳</text>
+                </image>
+            </view>
+            <view class="pleText">
+                <image src="https://120th.bnu.edu.cn/lygimg/ly4.png" style="height:100%;width:100%;">
+                    <text class="head-text">风雨兼程二甲子，京珠共创双一流</text>
+                </image>
+            </view>
+            <view class="pleText">
+                <image src="https://120th.bnu.edu.cn/lygimg/ly5.png" style="height:100%;width:100%;">
+                    <text class="head-text">廿正芳华，筑梦再出发</text>
+                </image>
+            </view>
+            
         </view>
-        
+
         <!-- 视频过多无法展示生成证书，是这里出了问题，之前下面这个view在上面这个view里，我们需要把他拿出来 -->
         <view style="position: relative; top: 60rpx; text-align: center;">
             <button wx:if="{{videoInfo}}" bindtap="gotoCertificate" type="primary" plain="true" style="position: relative; top: 16rpx;">点击领取证书</button>
         </view>
     </view>
 </view>
+
 
 <!-- 弹出按钮 -->
 <view bindtap="gotoUpdate" class="releaseBtn">
