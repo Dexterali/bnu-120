@@ -155,7 +155,7 @@ Page({
 			if(posterDatas.cert_name.length === 0) {
 				ctx.fillText('姓名: 校友！', 65, 140);
 			} else {
-				ctx.fillText(posterDatas.grade + '级校友' + posterDatas.cert_name + ':', 74, 130);
+				ctx.fillText(posterDatas.grade + '级校友' + posterDatas.cert_name + ':', 62+7*posterDatas.cert_name.length, 130);
 			}
             ctx.fillText('感谢您在120周年校庆中作出的贡献！', 155, 160);
             ctx.font = "bold 13px Arial"; //字体大小
