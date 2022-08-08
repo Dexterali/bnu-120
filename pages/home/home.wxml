@@ -29,9 +29,9 @@
                     <video class="video" src="{{item.videourl}}" object-fit="contain" play-btn-position="center"></video>
                     <view class="text">
                         <!-- 在这里，把时间改短一点：19:01:01 2022.07.14  -->
-                        <text class="box2">视频名称：{{item.name}}</text>
-                        <view class="box2">视频简介：{{item.text}}</view>
-                        <view class="box2">{{item.createtime}}</view>
+                        <text class="box2">姓名：{{item.name}}</text>
+                        <view class="box2">年级：{{item.date}}</view>
+                        <view class="box2">上传时间：{{item.createtime}}</view>
                     </view>
                 </view>
             </view>

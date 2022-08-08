@@ -15,7 +15,7 @@ Page({
         date:'',//视频上传者年级
         num: 0, //账号下已经上传视频数量
         videolist: [],
-        text: ''
+        text: '',
     },
 
     /**
@@ -174,7 +174,8 @@ Page({
                             videourl: that.data.fileID,
                             num: num,
                             createtime: createtime,
-                            text: that.data.text
+                            text: that.data.text,
+                            date: that.data.date
                         }
                     }).then(
                         res => {

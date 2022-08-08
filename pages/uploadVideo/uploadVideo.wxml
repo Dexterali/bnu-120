@@ -1,36 +1,40 @@
 <view class="main">
-    <view class="videoname">
-        <text style="position: relative; left: 0rpx; top: -1rpx">您的姓名</text>
-        <input model:value="{{name}}" class="name" type="text" placeholder="（可选）" bindinput="nameinput"></input>
-    </view>
-    <view class="section">
-            <view class="videotext">您的年级</view>
-            <picker bindchange="dateChange" fields="year" value="{{date}}" mode="date" class="input" name="grade">
-                <view class="name" style="width: 695rpx; height: 73rpx; display: block; box-sizing: border-box; position: relative; left: 30rpx; top: 0rpx">点击选择年级 {{date}}</view>
-            </picker>
+    <!-- 信息区 -->
+    <view class="info">
+        <view class="name">
+            <view class="nameText">您的姓名：</view>
+            <view class="line">
+                <input model:value="{{name}}" type="text" placeholder="选填" bindinput="nameinput"></input>
+            </view>
         </view>
-    <view class="videotext">
-        <text style="position: relative; left: 0rpx; top: -2rpx">视频简介</text>
-        <textarea model:value="{{text}}" placeholder="输入140字以下视频简介" bindinput="nameinput" style="position: relative; left: 0rpx; top: 32rpx"></textarea>
+        <view class="section">
+            <view class="grade">您的年级:</view>
+            <view class="input">
+                <picker bindchange="dateChange" fields="year" value="{{date}}" mode="date" name="grade">
+                    <view>
+                        <view wx:if="{{!date}}" style="color: #A9A9A9	;">点击选择</view>
+                        {{date}}
+                    </view>
+                </picker>
+            </view>
+        </view>
     </view>
+    <!-- 提示区 -->
     <view class="playerInfo">
         <view class="textvideo" wx:if="{{notmakesure}}">
-            <view class="videoContent" style="position: relative; left: 0rpx; top: 31rpx">
-                <!-- 希望上传什么样的视频 -->
-                <view class="tips">
-                    <!-- <view class="title">上传视频</view>
-                <view class="alltext">你希望上传什么呢</view> -->
-                </view>
+            <view style="z-index: 11; position:absolute; z-index: 10; text-align:center ;font-size: 22px;; font-weight:600;">
+                <text>上传说明
+                    例：我是某某届校友某某某，祝福北师大120周年生日快乐，祝福人工智能学院越来越好！</text>
             </view>
+            <view class="videoContent"></view>
         </view>
         <view class="video" wx:else>
-            <view class="videoContent">
-                <!-- <image src="../images/video/711.PNG" mode="aspectFill"></image> -->
-                <text class="videotext">您的年级</text>
-                <video class="videoContent" show-center-play-btn="true" src="{{tempFilePath}}" bindfullscreenchange="fullscreenchange"></video>
+            <view class="videoContentt">
+                <video class="videoContentt" show-center-play-btn="true" src="{{tempFilePath}}" bindfullscreenchange="fullscreenchange"></video>
             </view>
         </view>
     </view>
+    <!-- 上传区 -->
     <view class="footerbtn">
         <button class="button1" type="default" style="width: 40%; position: relative; left: 0rpx; top: 40rpx" bindtap="chooseVideo" wx:if="{{clickFlag}}">
             <image class="button_image1" src="/images/video/esd.png" style="position: relative; left: -6rpx; top: 12rpx"></image>
@@ -38,19 +42,8 @@
         <button class="button1" type="default" style="width: 40%; position: relative; left: 0rpx; top: 40rpx" wx:else>
             <image class="button_image2" src="/images/video/sd.png" style="position: relative; left: -6rpx; top: 12rpx"></image>
         </button>
-        <button class="button2" style="width: 40%; position: relative; left: -12rpx; top: 40rpx" bindtap="saveVideo">上传保存</button>
+        <button class="button2" style="width: 40%; position: relative; left: -12rpx; top: 40rpx" bindtap="saveVideo">
+            上传保存
+        </button>
     </view>
-    <!-- <view class="videoname">
-        <text>已上传视频 {{num}}个</text>
-        <view wx:for="{{videolist}}" wx:key="num" wx:for-index="idx" wx:for-item="item">
-        <view class="item">
-            <view class='itemname'>
-                {{idx}}: {{item.name}}
-            </view>
-            <view class='itemdate'>
-                {{item.createtime}}
-            </view>
-        </view>
-        </view>
-    </view> -->
 </view>
