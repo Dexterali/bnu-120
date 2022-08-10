@@ -7,7 +7,9 @@
                 <view class="djs" style="margin-left: 50%;">倒计时</view>
             </div>
             <view class="when">
-                <view class="djs" style="width: 141rpx; height: 165rpx; display: block; box-sizing: border-box; position: relative; left: -36rpx; top: 0rpx">{{day}}</view>
+                <view class="djs" style="width: 141rpx; height: 165rpx; display: block; box-sizing: border-box; position: relative; left: -36rpx; top: 0rpx">
+                    {{day}}
+                </view>
             </view>
             <view class="day">
                 <view class="djs">天</view>
@@ -26,7 +28,7 @@
 <view>
     <view style="margin-top: 6%; font-size: 21px; margin-left: 3%;">北京师范大学人工智能学院制作</view>
     <view style="margin-top: 6%; font-size: 21px; margin-left: 3%;">
-    <text user-select="true">联系我们：长按添加</text>
-    <image src="https://s3.bmp.ovh/imgs/2022/08/08/8402ae1a6b6a912a.jpg" show-menu-by-longpress="true" style="width: 387rpx; height: 364rpx; display: inline-block; box-sizing: border-box; position: relative; left: 169rpx; top: 0rpx"></image>
+        <text user-select="true">联系我们：长按添加</text>
+        <image src="https://pic.imgdb.cn/item/62f3128916f2c2beb1dbc79c.jpg" show-menu-by-longpress="true" style="width: 387rpx; height: 364rpx; display: inline-block; box-sizing: border-box; position: relative; left: 169rpx; top: 0rpx"></image>
     </view>
 </view>
