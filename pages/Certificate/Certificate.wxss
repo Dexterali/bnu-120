@@ -37,7 +37,7 @@ page {
 
 .text {
     width: 600rpx;
-    height: 280rpx;
+    height: 200rpx;
     font-size: 32rpx;
     color: #000;
     display: flex;

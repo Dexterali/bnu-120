@@ -1,101 +1,178 @@
-/* pages/index2/index2.wxss */
 page {
     height: 100%;
 }
-.main{
-    width:100%;
-    height: 100%;
-    /* background-image: url(https://img2.baidu.com/it/u=2891938941,1182034917&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=705); */
-    padding-top: 10rpx;
-    padding-bottom: 32rpx;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-  }
-  .playerInfo{
-    margin: 20rpx 20rpx 0 20rpx;
-  }
-  .video{
-    border :2rpx solid #cccccc;
-  }
-  .videoContent{
+
+.main {
+    padding: 0;
+    background-image:
+        -webkit-linear-gradient(0deg, #eeeeee 1%, transparent 3%, transparent),
+        -webkit-linear-gradient(90deg, #eeeeee 1%, transparent 3%, transparent);
+    background-image:
+        -moz-linear-gradient(0deg, #eeeeee 1%, transparent 3%, transparent),
+        -moz-linear-gradient(90deg, #eeeeee 1%, transparent 3%, transparent);
+    background-image:
+        -o-linear-gradient(0deg, #eeeeee 1%, transparent 3%, transparent),
+        -o-linear-gradient(90deg, #eeeeee 1%, transparent 3%, transparent);
+    background-image:
+        linear-gradient(0deg, #eeeeee 1%, transparent 3%, transparent),
+        linear-gradient(90deg, #eeeeee 1%, transparent 3%, transparent);
+    background-size: 20px 20px;
+    background-attachment: fixed
+}
+
+
+.info {
+    font-size: large;
+    border: 2px solid #e2a140;
+    width: 95%;
+    margin: 20rpx auto;
+    padding: 10rpx;
+    border-radius: 21rpx;
+}
+
+.playerInfo {
+    font-size: large;
+    border: 2px solid #e2a140;
+    width: 95%;
+    margin: 20rpx auto;
+    padding: 10rpx;
+    border-radius: 16rpx;
+}
+
+.video {
+    border: 2rpx solid #cccccc;
+}
+
+.videoContent {
     display: flex;
 
     width: 100vw;
     height: 40vw;
-    margin-top:0.5vw ;
-    background: url(https://s3.bmp.ovh/imgs/2022/07/12/be9fa1a838a370f1.png);
-    background-size:100% 100%;
-    -moz-background-size:100% 100%;
-
+    margin-top: 0.5vw;
+    background: url(https://www.bnu.edu.cn/images/content/2018-03/20180312153359769490.jpg);
+    filter: opacity(60%) blur(3px) brightness(90%);
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
     align-items: center;
     justify-content: center;
-    width:100%;
+    width: 100%;
     height: 324rpx;
     position: relative;
-  }
-  /*播放小图标*/
-  .playImg{
+}
+.videoContentt {
+    display: flex;
+    width: 100vw;
+    height: 40vw;
+    margin-top: 0.5vw;
+    background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 324rpx;
+    position: relative;
+}
+
+/*播放小图标*/
+.playImg {
     position: absolute;
     top: 36%;
-    left:46%;
-    width:64rpx;
+    left: 46%;
+    width: 64rpx;
     height: 64rpx;
-  }
-  .footerbtn{
+}
+
+.footerbtn {
     display: flex;
-    margin-top: 20rpx;
-  }
-  .button{
-    width:40%;
-  }
-  .videoUrlResult{
+    margin-bottom: 0%;
+}
+
+.button {
+    width: 40%;
+}
+
+.videoUrlResult {
     width: 100%;
     margin-top: 20rpx;
-  }
-  .videoUrlResult .title{ 
+}
+
+.videoUrlResult .title {
     font-size: 28rpx;
     font-weight: bold;
     color: red;
     margin-left: 20rpx;
-  }
-  .videoname , .videotext{
-    margin: 30rpx;
-    color:rgb(0, 0, 0);
-    font-weight: bold;
-  }
-  .name{
-    border:8rpx gray solid;
-    border-radius: 1%;
-  }
-  .videotext textarea{
-    border: gray 8rpx solid;
-    width: 98%;
-  }
-  .taps , .title , .alltext{
+}
+
+.name {
+    display: flex;
+    flex-direction: row;
+    margin: 5%;
+}
+
+
+.line {
+    width: 23%;
+    margin: 0 auto;
+    text-align: center;
+    border-bottom: 1px solid #A9A9A9;
+}
+
+.nameText {
+    display: flex;
+}
+
+.section {
+    margin: 5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.grade {
+    display: flex;
+    
+}
+
+.input {
+    border-bottom: 1px solid #A9A9A9;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+}
+
+.taps,
+.title,
+.alltext {
     display: flex;
     /* flex-direction: column; */
     justify-content: space-around;
     color: rgb(177, 187, 34);
     font-weight: bold;
     margin-top: 20rpx;
-  }
-  .button1{
-    background-color: #cccccc;   /*按钮透明*/  
-    border:none;				/*设置按钮边框*/
+}
+
+.button1 {
+    background-color: #cccccc;
+    /*按钮透明*/
+    border: none;
+    /*设置按钮边框*/
     width: 100rpx;
     height: 250rpx;
-  }
-  .button_image1{
+}
+
+.button_image1 {
     width: 200rpx;
     height: 220rpx;
-  }
-  .button2{				/*设置按钮边框*/
+}
+
+.button2 {
+    /*设置按钮边框*/
     width: 100rpx;
     height: 100rpx;
     background-color: #ebece3;
     color: rgb(46, 184, 28);
-  }
-  .button_image2{
+}
+
+.button_image2 {
     width: 200rpx;
     height: 220rpx;
-  }
+}

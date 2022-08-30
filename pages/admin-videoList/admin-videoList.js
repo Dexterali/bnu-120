@@ -238,7 +238,7 @@ Page({
    */
   onUnload() {
     wx.reLaunch({
-      url: '../port/port'
+      url: '../home/home'
     })
   },
 

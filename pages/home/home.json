@@ -1,3 +1,9 @@
 {
-	"navigationStyle":"custom"
+    "usingComponents": {
+        "banner": "../../components/banner/index",
+
+        "userFunctions": "/components/userFunctions/userFuncions"
+
+    },
+    "navigationStyle": "custom"
 }

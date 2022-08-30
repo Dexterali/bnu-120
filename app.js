@@ -1,28 +1,3 @@
-// // app.js
-// App({
-//   // onLaunch() {
-//   //   // 展示本地存储能力
-//   //   const logs = wx.getStorageSync('logs') || []
-//   //   logs.unshift(Date.now())
-//   //   wx.setStorageSync('logs', logs)
-
-//   //   // 登录
-//   //   wx.login({
-//   //     success: res => {
-//   //       // 发送 res.code 到后台换取 openId, sessionKey, unionId
-//   //     }
-//   //   })
-//   // },
-//   // globalData: {
-//   //   userInfo: null
-//   // }
-//   onLaunch: function() {
-//     wx.cloud.init({
-//       env: "cloud1-0g7v81g06ea4ad6b"
-//     })
-//   }
-// })
-
 // app.js
 App({
   // 定义一个全区对象用于保存一些设备及胶囊的数据, 在其他页面onLoad之后可以通过
@@ -67,25 +42,3 @@ App({
   }
 
 })
-
-
-/* 这是注释掉的app.json中的tabbar配置 */
-// "tabBar": {
-//   "list": [
-//     {
-//       "pagePath": "pages/index/index",
-//       "iconPath": "/images/tabs/home.png",
-//       "selectedIconPath": "/images/tabs/home-active.png"
-//     },
-//     {
-//       "pagePath": "pages/uploadVideo/uploadVideo",
-//       "iconPath": "/images/tabs/upload.png",
-//       "selectedIconPath": "/images/tabs/upload-active.png"
-//     },
-//     {
-//       "pagePath": "pages/user/user",
-//       "iconPath": "/images/tabs/message.png",
-//       "selectedIconPath": "/images/tabs/message-active.png"
-//     }
-//   ]
-// },
